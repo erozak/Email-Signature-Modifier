@@ -1,0 +1,65 @@
+mixin img(alt, size, src)
+  img(
+    alt=alt
+    src=src
+    style=`float:left; width: ${size}; height: ${size};`
+  )
+
+mixin link(href)
+  a(
+    target="_blank"
+    href=href
+    style="text-decoration: none; color: inherit !important;"
+  )
+    block
+
+mixin name(given, surname)
+  div(style="font-family: verdana, Arial, sans-serif; line-height: 1.6;")
+    span(style="font-weight: normal;")= given
+    span(style="margin-left: 0.5em; font-weight: bold;")= surname
+
+mixin detail()
+  div(
+    style="font-size: 0.875em;"
+  )
+    block
+
+mixin detail_item()
+  div(
+    name=name
+    style="padding: 0.125em 0;"
+  )
+    block
+
+mixin logo(title, href)
+  a(
+    title="Resume"
+    target="_blank"
+    href=href
+  )
+    block
+
+mixin meta
+  table(
+    style="margin-top: 9px; border-spacing: 0; padding-bottom: 0.125em; font-size: 0.875em; line-height: 1.6; font-family: Helvetica, Arial, sans-serif;"
+  )
+    tbody
+      tr
+        block
+
+mixin socialMedia(title, href, src)
+  td(style="border: 0 none; padding: 0;")
+    a(
+      target="_blank"
+      style="display: block; margin-right: 0.5em; height: 1.375em;"
+      href=href
+      title=title
+    )
+      +img(title, '1.25em', src)
+
+mixin action(id)
+  button.button.shadow(type="button" id=id)
+    block
+
+mixin clearBoth()
+  div(style="clear: both; zoom: 1; height: 0; opacity: 0; user-select: none;")

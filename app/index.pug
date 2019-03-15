@@ -1,0 +1,42 @@
+extends templates/html
+
+include templates/mixins.pug
+
+block title
+  | Email Signature
+
+block body
+  .container
+    #signature.showcase.shadow
+      +frameset_block
+        +frameset_top
+          +title_block
+            +title_logo
+              +logo('Homepage', 'https://www.google.com')
+                +img('logo', '1.75em', require('./images/logo.png'))
+            +title_name
+              +name('Tzu-Kang Jimmy', 'Hu')
+        +frameset_main
+          +detail
+            +detail_item('email')
+              +link('mailto: example@email.com')
+                | example@email.com
+            +detail_item('phone')
+              +link('tel: +02000000000')
+                | +02-000-000-000
+          +meta
+            +socialMedia(
+              'Linkedin',
+              'https://linkedin.com/in/example',
+              require('./images/linkedin.png')
+            )
+            +socialMedia(
+              'Github',
+              'https://www.github.com/example',
+              require('./images/github.png')
+            )
+    .actions
+      +action('copy-inline')
+        | Copy as inline html
+      +action('copy-styled')
+        | Copy as styled text

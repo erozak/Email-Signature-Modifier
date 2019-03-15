@@ -1,0 +1,55 @@
+:root {
+  --white: 255, 255, 255;
+  --black: 0, 0, 0;
+  --bg-color: 239, 239, 239;
+  --text-color: 33, 33, 33;
+  --highlight-color: 59, 155, 204;
+  --transition-config: 0.14s ease-in-out;
+}
+
+body {
+  background-color: rgb(var(--bg-color));
+}
+
+.container {
+  margin: 2em auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.shadow {
+  box-shadow: 0.125em 0.125em 0.25em 0.125em rgba(var(--black), 0.12);
+}
+
+.showcase {
+  margin: 1em auto;
+  padding: 2em 10%;
+  background-color: rgb(var(--white));
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2em;
+  color: rgb(var(--text-color));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.actions > button {
+  border: 3px solid rgb(var(--text-color));
+  padding: 0.375em 0.5em;
+  background-color: rgb(var(--white));
+  color: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color var(--transition-config),
+              border-color var(--transition-config);
+}
+
+.actions > button:hover {
+  color: rgb(var(--highlight-color));
+  border-color: rgb(var(--highlight-color));
+}
