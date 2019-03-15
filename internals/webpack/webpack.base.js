@@ -1,9 +1,27 @@
-const Dotenv = require('dotenv-webpack');
+const { fromRoot } = require('../utils/path');
+
+require('dotenv').config({
+  path: fromRoot('.env'),
+})
+
+const { set } = require('lodash');
+const { DefinePlugin } = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
-const { fromRoot } = require('../utils/path');
+const envKeys = [
+  'GIVEN_NAME',
+  'SURNAME',
+  'PHONE_NUMBER',
+  'LOGO_IMAGE',
+  'LOGO_LINK',
+  'EMAIL_ADDRESS',
+  'LINKED_ICON',
+  'LINKED_ID',
+  'GITHUB_ICON',
+  'GITHUB_USER',
+];
 
 const baseConfig = {
   entry: fromRoot('app/index.js'),
@@ -13,9 +31,14 @@ const baseConfig = {
   },
   context: __dirname,
   plugins: [
-    new Dotenv({
-      path: fromRoot('.env'),
-      safe: true,
+    new DefinePlugin({
+      'process.env': envKeys.reduce((acc, key) => {
+        if (key in process.env) {
+          return set(acc, key, JSON.stringify(process.env[key]));
+        }
+
+        return acc;
+      }, {}),
     }),
     new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
